@@ -1,0 +1,18 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 22.04.0 ] */
+/* [wxMaxima: input   start ] */
+graph_of_package():=block(
+   A:map(op,functions),
+   len:length(A),
+   B:map(lambda([x],rhs(apply(fundef,[x]))),A),
+   C:makelist([i,A[i]],i,len),
+   D:unique(map(sort,delete(false,map(lambda([x],if x[1]#x[2] and ssearch(string(A[x[1]]),string(B[x[2]]))#false then x),create_list([i,j],i,1,len,j,1,len))))),
+   load(graphs),
+   create_graph(C,D)
+)$
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 22.04.0"$
