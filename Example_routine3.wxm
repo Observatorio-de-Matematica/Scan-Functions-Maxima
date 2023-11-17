@@ -1,0 +1,95 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 22.04.0 ] */
+/* [wxMaxima: input   start ] */
+demo(ex_calc);
+/* [wxMaxima: input   end   ] */
+/* [wxMaxima: question  start ] */
+_
+/* [wxMaxima: question  end   ] */
+/* [wxMaxima: answer  start ] */
+;
+/* [wxMaxima: answer  end   ] */
+
+
+/* [wxMaxima: input   start ] */
+functions;
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+block(L1:[],for i from 1 thru length(%) do push(reveal(part(%,i),1),L1),reverse(L1));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+block(map(fundef,%),makelist(part(%%,i,2),i,1,length(%)))$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+block(L2:[],for i from 1 thru length(%th(2)) do for j from 1 thru length(%th(2)) do if ssearch(string(part(%th(2),i)),string(part(%,j)))#false
+then push([part(%th(2),i),part(%th(2),j)],L2),L2)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+block(L3:[],for i from 1 thru length(%) do if part(%,i,1)#part(%,i,2) then push(part(%,i),L3),L3);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+block(L4:[],for i from 1 thru length(%th(4)) do push([i,string(part(%th(4),i))],L4),reverse(L4));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+map(reverse,%)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+block(L5:[],for i from 1 thru length(%th(3)) do push([assoc(string(part(%th(3),i,1)),%),assoc(string(part(%th(3),i,2)),%)],L5),L5)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+block(L6:[],for i from 1 thru length(%) do if not member(reverse(part(%,i)),%)
+then push(part(%,i),L6),L6);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+block(L7:[],for i from 1 thru length(%th(2)) do if not member(part(%th(2),i),%)
+then push(part(%th(2),i),L7),L7);
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+block(makelist(part(%,i),i,1,length(%),2),append(%%,map(reverse,makelist(part(%,i),i,2,length(%),2))),unique(%%));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+append(%,%th(3));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+load ("graphs")$
+g : create_graph(%th(8),%th(2));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+draw_graph(%,show_vertices=vertices(%));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+print_graph(g);
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 22.04.0"$
