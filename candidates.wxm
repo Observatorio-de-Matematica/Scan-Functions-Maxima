@@ -1,0 +1,77 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 23.05.1 ] */
+/* [wxMaxima: input   start ] */
+apropos_complete:apropos("")$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+apropos_verb_form:apropos("$")$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+apropos_noun_form:apropos(%)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+len:length(apropos_complete)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+broad_category(prop):=block(
+    [broad_cat:[]],
+    prop_apropos_tot:map(properties,apropos_complete),
+    for i from 1 thru len do if member(prop,prop_apropos_tot[i]) then broad_cat:endcons(apropos_complete[i],broad_cat),
+    broad_cat)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+broad_category(function)$
+prop_function_pkgs:block(
+    map(fundef,%),
+    map(rhs,%%),
+    map(lambda([x],args(args(x)[1])),%%),
+    map(lambda([x],x[1]),%%),
+    map(lambda([x],striml("'",string(x))),%%),
+    map(lambda([x],striml("?",x)),%%),
+    map(lambda([x],split(x,"/")),%%),
+    map(lambda([x],split(x[1],".")),%%),
+    unique(flatten(%%)),
+    map(charlist,%%),
+    map(lambda([x],if not alphacharp(x[1]) then rest(x) else x),%%),
+    map(lambda([x],if not alphacharp(last(x)) then rest(x,-1) else x),%%),
+    map(simplode,%%),
+    sublist(%%,lambda([x],file_search(x)#false))
+  )$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+file_search_path_pkgs:block(
+   [my_files:file_search_demo],
+   strimr("$$$.{dem,dm1,dm2,dm3,dmt}",my_files[1]),
+   striml(%%,my_files[2]),
+   strimr("$$$.{dem,dm1,dm2,dm3,dmt}",%%),
+   strimr("/",%%),
+   strim("{",%%),
+   strim("}",%%),
+   split(%%,","),
+   map(lambda([x],split(x,"/")),%%),
+   unique(flatten(%%)),
+   sublist(%%,lambda([x],file_search(x)#false))
+)$
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+candidates:sublist(unique(append(prop_function_pkgs,file_search_path_pkgs)),lambda([x],file_type(file_search(x))=maxima));
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 23.05.1"$
