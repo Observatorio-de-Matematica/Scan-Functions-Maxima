@@ -1,0 +1,20 @@
+/* [wxMaxima batch file version 1] [ DO NOT EDIT BY HAND! ]*/
+/* [ Created with wxMaxima version 22.04.0 ] */
+/* [wxMaxima: comment start ]
+From https://www.informatik.uni-leipzig.de/~graebe/skripte/esr05.pdf page 43
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+level1(u):=makelist(part(u,i),i,0,length(u));
+/* [wxMaxima: input   end   ] */
+
+
+/* [wxMaxima: input   start ] */
+structure(u):= if atom(u) then u else map(structure,level1(u));
+/* [wxMaxima: input   end   ] */
+
+
+
+/* Old versions of Maxima abort on loading files that end in a comment. */
+"Created with wxMaxima 22.04.0"$
