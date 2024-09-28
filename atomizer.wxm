@@ -15,6 +15,20 @@ structure(u):= if atom(u) then u else map(structure,level1(u));
 /* [wxMaxima: input   end   ] */
 
 
+/* [wxMaxima: comment start ]
+The following is a different attempt
+   [wxMaxima: comment end   ] */
+
+
+/* [wxMaxima: input   start ] */
+extract_atoms(expr):=if atom(expr)
+then [expr]
+else if listp(expr)
+then apply(append, map(extract_atoms, expr))
+else []$
+/* [wxMaxima: input   end   ] */
+
+
 
 /* Old versions of Maxima abort on loading files that end in a comment. */
 "Created with wxMaxima 22.04.0"$
